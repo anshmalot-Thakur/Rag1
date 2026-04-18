@@ -23,6 +23,7 @@ from langchain_classic.chains.retrieval_qa.base import RetrievalQA
 from langchain_core.prompts import PromptTemplate
 from langchain_core.documents import Document
 from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
 from pinecone import Pinecone, ServerlessSpec
 try:
     import pytesseract
@@ -162,7 +163,7 @@ def load_vectorstore():
             return None
  
         # Connect to the existing index — no document upload
-        embed = OllamaEmbeddings(model=EMBED_MODEL)
+        embed = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=OPENROUTER_API_KEY, openai_api_base="https://openrouter.ai/api/v1"))
         db = PineconeVectorStore.from_existing_index(
             index_name=PINECONE_INDEX_NAME,
             embedding=embed,
