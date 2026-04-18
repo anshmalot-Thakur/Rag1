@@ -88,7 +88,7 @@ LLM_MODEL = "google/gemini-2.0-flash-001"  #
 # ============================================
 # PINECONE CLOUD CONFIGURATION
 # ============================================
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+PINECONE_API_KEY = os.secrets("PINECONE_API_KEY")
 PINECONE_INDEX_NAME = "ncert-science"  # Your index name
 PINECONE_ENVIRONMENT = "us-east-1"  # Default region 
 
@@ -315,7 +315,7 @@ def init_rag_chain():
     # Use ChatOpenAI (LangChain's version) instead of the raw OpenAI client
     llm = ChatOpenAI(
         model=LLM_MODEL,
-        openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+        openai_api_key=st.secrets("OPENROUTER_API_KEY"),
         openai_api_base="https://openrouter.ai/api/v1",
         temperature=0.5,  # Balanced: factual but natural explanations
         max_tokens=2500,  # Allow longer, detailed answers with proper citations
