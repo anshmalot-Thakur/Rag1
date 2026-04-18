@@ -163,7 +163,7 @@ def load_vectorstore():
             return None
  
         # Connect to the existing index — no document upload
-        embed = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=OPENROUTER_API_KEY, openai_api_base="https://openrouter.ai/api/v1"))
+        embed = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=OPENROUTER_API_KEY, openai_api_base="https://openrouter.ai/api/v1")
         db = PineconeVectorStore.from_existing_index(
             index_name=PINECONE_INDEX_NAME,
             embedding=embed,
